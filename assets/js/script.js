@@ -1,8 +1,8 @@
-async function allPokemon() {
-  const getAllPokemon = await fetch("https://pokeapi.co/api/v2/pokemon");
-  const data = await getAllPokemon.json();
+let page = 0;
 
-  console.log(data);
+async function allPokemon() {
+  const getAllPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${page}&limit=20`);
+  const data = await getAllPokemon.json();
 
   data.results.forEach(async function (item) {
     const pokeSlc = await fetch(item.url);
@@ -12,11 +12,14 @@ async function allPokemon() {
       `https://pokeapi.co/api/v2/pokemon-species/${pokeData.order}`
     );
     const dataText = await pokeText.json();
-    let arrayText = [];
     let count = Math.floor(Math.random() * 50);
-    const pokeDescription = dataText.flavor_text_entries[count].flavor_text;
+    let pokeDescription;
 
-    console.log(pokeDescription);
+    while(dataText.flavor_text_entries[count].language.name != "en") {
+      count = Math.floor(Math.random() * 50);
+    }
+
+    pokeDescription = dataText.flavor_text_entries[count].flavor_text;
 
     for (let i = 0; i < pokeData.types.length; i++) {
       arrayTypes.push(pokeData.types[i].type.name);
@@ -43,3 +46,30 @@ async function allPokemon() {
 }
 
 allPokemon();
+
+//paginação simples
+function viewMore(){
+  page++;
+  allPokemon();
+}
+
+//paginação infinita
+window.addEventListener("scroll", function (){
+  const {scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  if(scrollTop + clientHeight >= scrollHeight - 300){
+      viewMore();
+  }
+});
+
+const pokeInput = document.querySelector("#pokeInput");
+
+pokeInput.addEventListener("keyup", () => {
+  const allH2 = document.querySelectorAll(".pokeName");
+  for(let n of allH2) {
+    if(n.includes(pokeInput.value)) {
+      n.style.color = "red";
+    }
+  }
+
+})
