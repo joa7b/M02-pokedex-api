@@ -1,7 +1,7 @@
 let page = 0;
 
 async function allPokemon() {
-  const getAllPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${page}&limit=20`);
+  const getAllPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${page}&limit=50`);
   const data = await getAllPokemon.json();
 
   data.results.forEach(async function (item) {
@@ -49,7 +49,7 @@ allPokemon();
 
 //paginação simples
 function viewMore(){
-  page++;
+  page += 50;
   allPokemon();
 }
 
@@ -65,10 +65,19 @@ window.addEventListener("scroll", function (){
 const pokeInput = document.querySelector("#pokeInput");
 
 pokeInput.addEventListener("keyup", () => {
+  console.log("ok");
   const allH2 = document.querySelectorAll(".pokeName");
+  const allCards = document.querySelectorAll(".pokeCards");
+
   for(let n of allH2) {
-    if(n.includes(pokeInput.value)) {
-      n.style.color = "red";
+    // console.log(n.innerText);
+  
+  if(pokeInput.value === "") {
+    n.parentElement.parentElement.style.display = "flex"
+  }else if(n.innerText.toLowerCase().includes(pokeInput.value.toLowerCase())){
+      n.parentElement.parentElement.style.display = "flex"
+    }else{
+      n.parentElement.parentElement.style.display = "none";
     }
   }
 
