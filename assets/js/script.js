@@ -29,8 +29,8 @@ async function allPokemon() {
       arrayTypes.push(pokeData.types[i].type.name);
     }
 
-    let count = 0
-    let idteste = pokeData.id;
+    // let count = 0
+    // let idteste = pokeData.id;
 
     document.querySelector("#pokeContainer").insertAdjacentHTML(
       "beforeend",
@@ -50,24 +50,31 @@ async function allPokemon() {
                 <p class="pokeDescription">${pokeDescription}</p>  
             </div>
           </div>
-          <button class="btnDetail" onclick="details()">Detalhes</button>
-          <div class="pokeCards teste " id="${pokeData.id}">
+          <button class="btnDetail" onclick="modal()">Detalhes</button>
+          
+          <div class="pokeCards teste" id="${pokeData.id}">
             <p>HP: ${pokeData.stats[0].base_stat}</p>
-            <p>Attack: ${pokeData.stats[0].base_stat}</p>
-            <p>Defense: ${pokeData.stats[0].base_stat}</p>
-            <p>Special Attack: ${pokeData.stats[0].base_stat}</p>
-            <p>Special Defense: ${pokeData.stats[0].base_stat}</p>
-            <p>Special Defense: ${pokeData.stats[0].base_stat}</p>
+            <p>Attack: ${pokeData.stats[1].base_stat}</p>
+            <p>Defense: ${pokeData.stats[2].base_stat}</p>
+            <p>Special Attack: ${pokeData.stats[3].base_stat}</p>
+            <p>Special Defense: ${pokeData.stats[4].base_stat}</p>
+            <p>Special Defense: ${pokeData.stats[5].base_stat}</p>
           </div>
         </div>
         `
     );
+    // const allCards = document.querySelectorAll(".pokeCards");
+    // // console.log(allCards)
+    // modal()
   });
-
 
 }
 
+
+
 allPokemon();
+
+
 
 //paginação simples
 function viewMore() {
@@ -106,21 +113,41 @@ pokeInput.addEventListener("keyup", () => {
   }
 });
 
-// const teste = document.querySelectorAll(".teste");
+// function modal() {
+//   const btnTeste = document.querySelectorAll(".btnDetail");
+//   // console.log(btnTeste);
 
-// forEach(teste) {
+//   btnTeste.forEach((a) => {
+    
+//     a.addEventListener("click", () => {
+//       console.log(a)
+//       details()
+//     })
+//   })
 
 // }
 
-function details() {
-  const teste = document.querySelectorAll(".teste");
+// function details() {
+//   const teste = document.querySelectorAll(".teste");
+//   // console.log(teste)
+//   teste.forEach((a) => {
+//     a.style.display = "block";
+//   })
+// }
 
-  for(let n of teste) {
-    console.log(n.innerText)
-    n.style.display = "block";
+function modal() {
+  const btnDetail = document.querySelectorAll(".btnDetail");
+
+  for(let n of btnDetail){
+    n.addEventListener("click", () => {
+      if(n.parentElement.querySelector(".teste").style.display == "none") {
+        n.parentElement.querySelector(".teste").style.display = "unset";
+      }else {
+        n.parentElement.querySelector(".teste").style.display = "none";
+      }
+    })
   }
 }
-
 
 
 
