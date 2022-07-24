@@ -39,11 +39,11 @@ html {
   background-image: url("https://gifs.eco.br/wp-content/uploads/2022/04/gifs-do-charizard-1.gif");
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 50vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(5px);
+  filter: brightness(30%);
 }
 
 .headerContainer input {
@@ -73,7 +73,7 @@ html {
   width: 500px;
   height: 300px;
   border-radius: 6px;
-  box-shadow: 3px 3px 5px rgb(27, 27, 27);
+  box-shadow: 3px 5px 5px rgb(27, 27, 27);
   margin-bottom: 30px;
   background-color:aliceblue;
   align-items: center;
@@ -116,16 +116,31 @@ html {
 }
 
 .pokeType{
-  background-color: red;
+  display: flex;
   border-radius: 50px;
   text-align: center;
   padding: 0.2rem;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.pokeType p::first-letter{
+  text-transform: uppercase;
 }
 
 .pokeDescription{
   padding: 1rem;
   text-align: justify;
   height: 150px;
+}
+
+.btnDetail{
+  background-color: aliceblue;
+  border: none;
+}
+
+.btnDetail:hover{
+  background-color: rgb(190, 190, 190);
 }
 
 
