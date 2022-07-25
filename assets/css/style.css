@@ -29,6 +29,8 @@ html {
   flex-direction: column;
   z-index: 2;
   position: absolute;
+  align-items: center;
+  justify-content: center;
 }
 
 .pokeInfos img {
@@ -171,4 +173,34 @@ html {
 
 .teste p{
   padding: 5px;
+}
+
+@media (max-width: 700px) {
+  .pokeInfos img{
+    width: 250px;
+  }
+
+  .pokeInfos input{
+    width: 200px;
+  }
+
+  .pokeCards{
+    width: 300px;
+    height: 400px;
+  }
+
+  .imgContainer img{
+    width: 100px;
+    height: 100px;
+  }
+
+  .pokeNID{
+    font-size: 0.5rem;
+    flex-direction: column;
+  }
+
+  .pokeCardInfo{
+    font-size: small;
+    justify-content: space-evenly;
+  }
 }
